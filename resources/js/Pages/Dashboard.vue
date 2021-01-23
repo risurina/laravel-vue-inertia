@@ -7,13 +7,14 @@
             Email: {{ user.email }} <br>
             Verified: {{ user.email_verified_at ? 'YES' : 'NO' }}
         </span>
+
     </div>
 </template>
 
 <script>
 export default {
-  props: {
-    user: Object,
-  }
+    props: {
+        user: Object,
+    }
 }
 </script>

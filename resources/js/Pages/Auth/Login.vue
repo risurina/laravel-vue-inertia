@@ -40,7 +40,7 @@
 
         <div>
             <button v-on:click="login">
-                Login
+                {{loading ? 'Loading...' : 'Login'}}
             </button>
         </div>
       </div>
@@ -72,8 +72,8 @@ export default {
       }
 
       this.$inertia.post('/login', data, {
-        onStart: () => this.sending = true,
-        onFinish: () => this.sending = false,
+        onStart: () => this.loading = true,
+        onFinish: () => this.loading = false,
       })
     },
   },
