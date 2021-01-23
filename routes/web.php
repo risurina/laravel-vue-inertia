@@ -28,6 +28,15 @@ Route::post('login', [LoginController::class, 'login'])
     ->name('login.attempt')
     ->middleware('guest');
 
+Route::get('logout', [LoginController::class, 'logout'])
+    ->name('logout');
+
+Route::post('logout', [LoginController::class, 'logout'])
+    ->name('logout');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
