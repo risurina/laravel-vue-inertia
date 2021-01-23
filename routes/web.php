@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return "LOGIN";
-})->name('login');
+Route::get('login', [LoginController::class, 'showLoginForm'])
+    ->name('login')
+    ->middleware('guest');
 
+Route::post('login', [LoginController::class, 'login'])
+    ->name('login.attempt')
+    ->middleware('guest');
 
-Route::get('/dashboard', function () {
-    return view('welcome');
-})->middleware('auth')->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard')
+    ->middleware('auth');
